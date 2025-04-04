@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'challenge.apps.ChallengeConfig',
+    'challenge.api.app.apps.ChallengeConfig',
 ]
 
 
@@ -54,7 +54,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'challenge.urls'
+ROOT_URLCONF = 'challenge.api.app.urls'
 
 TEMPLATES = [
     {
@@ -84,7 +84,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
-WSGI_APPLICATION = 'challenge.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database

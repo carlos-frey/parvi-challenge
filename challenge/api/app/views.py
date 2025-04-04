@@ -37,7 +37,3 @@ class LocationViewSet(viewsets.ModelViewSet):
         route.locations.add(request.data['location_id'])
         route = self.get_object()
         serializer = LocationSerializer(data=request.data)
-        # if serializer.is_valid():
-        #     serializer.save(route=route)
-        #     return Response(serializer.data, status=status.HTTP_201_CREATED)
-        # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

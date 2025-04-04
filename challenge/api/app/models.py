@@ -41,8 +41,6 @@ class Map(models.Model):
     
     def __str__(self):
         return self.name
-    
-
 
     
 class Route(models.Model):
