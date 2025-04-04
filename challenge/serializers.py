@@ -1,11 +1,6 @@
 from rest_framework import serializers
-from .models import Hero, Map, Route, Location, Image
+from .models import Hero, Map, Route, Location
 from django.contrib.auth.models import User
-
-class ImageSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Image
-        fields = '__all__'
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -26,7 +21,7 @@ class MapSerializer(serializers.ModelSerializer):
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
-        fields = ['id', 'description', 'image', 'route']
+        fields = ['id', 'description', 'route']
         
 class RouteSerializer(serializers.ModelSerializer):
     class Meta:

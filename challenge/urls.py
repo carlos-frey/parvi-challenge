@@ -15,10 +15,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
-from .views import HeroViewSet, ImageViewSet, MapViewSet, RouteViewSet, LocationViewSet
+from .views import HeroViewSet,  MapViewSet, RouteViewSet, LocationViewSet
 from rest_framework.authtoken.views import obtain_auth_token
 from django.conf import settings
 
@@ -26,7 +26,6 @@ router = DefaultRouter()
 router.register(r'hero', HeroViewSet)
 router.register(r'map', MapViewSet)
 router.register(r'route', RouteViewSet)
-router.register(r'images', ImageViewSet)
 
 ID_RELATED_VIEWSET_PRESET = {'get': 'retrieve', 'delete': 'destroy', 'put': 'update'}
 NON_ID_VIEWSET_PRESET = {'get': 'list', 'post': 'create'}

@@ -3,7 +3,7 @@ from .models import Hero, Map, Route, Location
 
 @admin.register(Hero)
 class HeroAdmin(admin.ModelAdmin):
-    list_display = ('name', 'role', 'image')
+    list_display = ('name', 'role')
     search_fields = ('name', 'role')
     list_filter = ('role',)
     ordering = ('name',)
