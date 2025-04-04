@@ -15,8 +15,30 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf.urls.static import static
+from rest_framework.routers import DefaultRouter
+from .views import HeroViewSet, ImageViewSet, MapViewSet, RouteViewSet, LocationViewSet
+from rest_framework.authtoken.views import obtain_auth_token
+from django.conf import settings
+
+router = DefaultRouter()
+router.register(r'hero', HeroViewSet)
+router.register(r'map', MapViewSet)
+router.register(r'route', RouteViewSet)
+router.register(r'images', ImageViewSet)
+
+ID_RELATED_VIEWSET_PRESET = {'get': 'retrieve', 'delete': 'destroy', 'put': 'update'}
+NON_ID_VIEWSET_PRESET = {'get': 'list', 'post': 'create'}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
+    path('hero/', HeroViewSet.as_view(NON_ID_VIEWSET_PRESET), name='hero'),
+    path('hero/<int:pk>', HeroViewSet.as_view(ID_RELATED_VIEWSET_PRESET), name='hero'),
+    path('map/', MapViewSet.as_view(NON_ID_VIEWSET_PRESET), name='map'),
+    path('map/<int:pk>', MapViewSet.as_view(ID_RELATED_VIEWSET_PRESET), name='map'),
+    path('route/', RouteViewSet.as_view(NON_ID_VIEWSET_PRESET), name='route'),
+    path('location/<int:pk>', LocationViewSet.as_view(ID_RELATED_VIEWSET_PRESET), name='location'),
+    
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
